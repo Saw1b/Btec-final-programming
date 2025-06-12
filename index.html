@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,248 +14,110 @@
     <title>Student CMS</title>
   </head>
   <body>
-    <div class="container">
-        <div class="header">
-            <h1>Student Management System</h1>
-            <p>Manage student records and academic data efficiently</p>
+    <div class="main">
+      <h1>Student Management System</h1>
+      
+      <!-- Student Form -->
+      <form class="form" id="student-form">
+        <div class="form-group">
+          <div class="form-row">
+            <label for="name">Name *</label>
+            <input name="name" type="text" id="name" placeholder="Enter name" required />
+          </div>
+          <div class="form-row">
+            <label for="email_address">Email Address *</label>
+            <input
+              name="email_address"
+              type="email"
+              id="email_address"
+              placeholder="Enter email address"
+              required
+            />
+          </div>
         </div>
 
-        <div class="main-content">
-            <div class="tabs">
-                <button class="tab active" data-tab="add-student">Add Student</button>
-                <button class="tab" data-tab="view-students">View Students</button>
-                <button class="tab" data-tab="search-student">Search Student</button>
-                <button class="tab" data-tab="academic-records">Academic Records</button>
-            </div>
-
-            <div id="message" class="message"></div>
-
-            <!-- Add Student Tab -->
-            <div id="add-student" class="tab-content active">
-                <form id="student-form" class="form">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" placeholder="Enter full name" required>
-                            <span class="error-message" id="name-error"></span>
-                        </div>
-                        <div class="form-row">
-                            <label for="email_address">Email Address *</label>
-                            <input type="email" id="email_address" name="email_address" placeholder="Enter email address" required>
-                            <span class="error-message" id="email-error"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="phone_number">Phone Number</label>
-                            <input type="tel" id="phone_number" name="phone_number" placeholder="Enter phone number">
-                            <span class="error-message" id="phone-error"></span>
-                        </div>
-                        <div class="form-row">
-                            <label for="address">Address *</label>
-                            <input type="text" id="address" name="address" placeholder="Enter full address" required>
-                            <span class="error-message" id="address-error"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="father_name">Father's Name *</label>
-                            <input type="text" id="father_name" name="father_name" placeholder="Enter father's name" required>
-                            <span class="error-message" id="father-error"></span>
-                        </div>
-                        <div class="form-row">
-                            <label for="mother_name">Mother's Name *</label>
-                            <input type="text" id="mother_name" name="mother_name" placeholder="Enter mother's name" required>
-                            <span class="error-message" id="mother-error"></span>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="age">Age *</label>
-                            <input type="number" id="age" name="age" placeholder="Enter age" min="1" max="150" required>
-                            <span class="error-message" id="age-error"></span>
-                        </div>
-                        <div class="form-row">
-                            <label for="guardian_number">Guardian's Phone *</label>
-                            <input type="tel" id="guardian_number" name="guardian_number" placeholder="Enter guardian's phone" required>
-                            <span class="error-message" id="guardian-error"></span>
-                        </div>
-                    </div>
-
-                    <div class="action-container">
-                        <button type="submit" class="btn btn-primary">Add Student</button>
-                        <button type="reset" class="btn btn-secondary">Clear Form</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- View Students Tab -->
-            <div id="view-students" class="tab-content">
-                <div class="stats">
-                    <div class="stat-card">
-                        <div class="stat-number" id="total-students">0</div>
-                        <div class="stat-label">Total Students</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="students-this-month">0</div>
-                        <div class="stat-label">Added This Month</div>
-                    </div>
-                </div>
-
-                <div class="action-container">
-                    <button id="refresh-data" class="btn btn-primary">Refresh Data</button>
-                    <button id="export-data" class="btn btn-success">Export Data</button>
-                </div>
-
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Age</th>
-                                <th>Father's Name</th>
-                                <th>Mother's Name</th>
-                                <th>Guardian Phone</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="students-table-body">
-                            <tr>
-                                <td colspan="9" class="empty-state">
-                                    <div>📚</div>
-                                    <p>No students found. Add some students to get started!</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Search Student Tab -->
-            <div id="search-student" class="tab-content">
-                <div class="search-section">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="search-id">Student ID</label>
-                            <input type="number" id="search-id" placeholder="Enter student ID to search">
-                        </div>
-                    </div>
-                    <div class="action-container">
-                        <button id="search-btn" class="btn btn-primary">Search Student</button>
-                        <button id="clear-search" class="btn btn-secondary">Clear</button>
-                    </div>
-                </div>
-
-                <div id="student-details" class="form" style="display: none;">
-                    <h3 style="margin-bottom: 20px; color: #333;">Student Details</h3>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="edit-name">Full Name</label>
-                            <input type="text" id="edit-name" name="edit-name">
-                        </div>
-                        <div class="form-row">
-                            <label for="edit-email">Email Address</label>
-                            <input type="email" id="edit-email" name="edit-email">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="edit-phone">Phone Number</label>
-                            <input type="tel" id="edit-phone" name="edit-phone">
-                        </div>
-                        <div class="form-row">
-                            <label for="edit-address">Address</label>
-                            <input type="text" id="edit-address" name="edit-address">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="edit-father">Father's Name</label>
-                            <input type="text" id="edit-father" name="edit-father">
-                        </div>
-                        <div class="form-row">
-                            <label for="edit-mother">Mother's Name</label>
-                            <input type="text" id="edit-mother" name="edit-mother">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="edit-age">Age</label>
-                            <input type="number" id="edit-age" name="edit-age">
-                        </div>
-                        <div class="form-row">
-                            <label for="edit-guardian">Guardian's Phone</label>
-                            <input type="tel" id="edit-guardian" name="edit-guardian">
-                        </div>
-                    </div>
-
-                    <div class="action-container">
-                        <button id="update-student" class="btn btn-success">Update Student</button>
-                        <button id="delete-student" class="btn btn-danger">Delete Student</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Academic Records Tab -->
-            <div id="academic-records" class="tab-content">
-                <div class="form">
-                    <h3 style="margin-bottom: 20px; color: #333;">Add Academic Record</h3>
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="academic-student-id">Student ID</label>
-                            <input type="number" id="academic-student-id" placeholder="Enter student ID">
-                        </div>
-                        <div class="form-row">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="Enter subject name">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="marks">Marks</label>
-                            <input type="number" id="marks" placeholder="Enter marks" min="0" max="100">
-                        </div>
-                        <div class="form-row">
-                            <label for="status">Status</label>
-                            <select id="status">
-                                <option value="">Select status</option>
-                                <option value="pass">Pass</option>
-                                <option value="fail">Fail</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                            <label for="type">Type</label>
-                            <select id="type">
-                                <option value="">Select type</option>
-                                <option value="midterm">Midterm</option>
-                                <option value="final">Final</option>
-                                <option value="assignment">Assignment</option>
-                                <option value="quiz">Quiz</option>
-                            </select>
-                        </div>
-                        <div class="form-row">
-                            <label for="class">Class</label>
-                            <input type="text" id="class" placeholder="Enter class/grade">
-                        </div>
-                    </div>
-
-                    <div class="action-container">
-                        <button id="add-academic" class="btn btn-primary">Add Academic Record</button>
-                    </div>
-                </div>
-            </div>
+        <div class="form-group">
+          <div class="form-row">
+            <label for="phone_number">Phone Number *</label>
+            <input
+              name="phone_number"
+              type="tel"
+              id="phone_number"
+              placeholder="Enter phone number"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="address">Address *</label>
+            <input
+              name="address"
+              type="text"
+              id="address"
+              placeholder="Enter address"
+              required
+            />
+          </div>
         </div>
+
+        <div class="form-group">
+          <div class="form-row">
+            <label for="father_name">Father Name *</label>
+            <input
+              name="father_name"
+              type="text"
+              id="father_name"
+              placeholder="Enter Father name"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="mother_name">Mother Name *</label>
+            <input
+              name="mother_name"
+              type="text"
+              id="mother_name"
+              placeholder="Enter mother name"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
+            <label for="age">Age *</label>
+            <input name="age" type="number" id="age" placeholder="Enter Age" min="1" max="60" required />
+          </div>
+          <div class="form-row">
+            <label for="guardian_number">Guardian Number *</label>
+            <input
+              name="guardian_number"
+              type="tel"
+              id="guardian_number"
+              placeholder="Enter Guardian Number"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group" style="flex-direction: column">
+          <div class="form-row">
+            <label>Subjects *</label>
+          </div>
+          <div id="subjects-form-group"></div>
+        </div>
+        
+        <div>
+          <button type="button" id="add-subject">Add Subject</button>
+        </div>
+
+        <div class="form-group action-container">
+          <div class="form-row">
+            <button type="button" id="form-submit">Submit</button>
+            <button type="button" id="get-button" class="get-button">View Students</button>
+          </div>
+        </div>
+      </form>
     </div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

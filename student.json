@@ -1,13 +1,13 @@
 [
-  {
-    "id": "",
-    "name": "",
-    "phone_number": "",
-    "guardian_number": "",
-    "address": "",
-    "father_name": "",
-    "mother_name": "",
-    "age": "",
-    "email_address": ""
-  }
+    {
+        "id": "",
+        "name": "",
+        "phone_number": "",
+        "email_address": "",
+        "address": "",
+        "guardian_name": "",
+        "father_name": "",
+        "mother_name": "",
+        "age":""
+    }
 ]

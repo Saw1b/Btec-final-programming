@@ -1,26 +1,24 @@
-export { TABLE_NAME, MESSAGES }
-
-
 const TABLE_NAME = {
-    STUDENTS: 'students'
-};
+    STUDENTS: 'students',
+}
+
 
 const MESSAGES = {
-    success: "Data Saved",
-    NOT_FOUND: "Data was not found.",
+    sucess: "Data Saved",
+    NOT_FOUND: "Data Not Found",
     student: {
-    SAVED: 'Student data has been saved successfully',
-    INVALID_ID: "Please provide a valid student id",
-    NOT_FOUND: "Student data was not found.",
-    FOUND: "Student data found",
-    ALREADY_EXISTS: "Student email already exists"
-},
-academic: {
-    SAVED: "Academic data has been saved",
-    NOT_FOUND: "Academic data was not found.",
-    INVALID_ID: "Please provide a valid student id",
-       FOUND: "Academic data found",
-       ALREADY_EXISTS: "Academic data already exists"
-},
-INVALID: "Please provide valid data",
-ACCESS_DENIED: "Access denied"};
+        NOT_FOUND: "Student Not Found",
+        ALREADY_EXISTS: "Student Already Exists",
+        INVALID_ID: "Invalid Student ID",
+        SAVED: "Student Data Saved",
+        FOUND: "Student Data Found",
+        UPDATED: "Student Data Updated",
+        DELETED: "Student Data Deleted",
+    },
+    INVALID: "Invalid Request"
+
+}
+export { TABLE_NAME, MESSAGES };
+       
+
+    

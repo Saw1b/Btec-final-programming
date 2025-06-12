@@ -1,7 +1,6 @@
-[
-  {
-    "id": "",
-    "student": {},
+[{
+    "id":"",
+    "student": "",
     "class": "",
     "subject": "",
     "obtained_marks": "",
@@ -9,5 +8,4 @@
     "total_marks": "",
     "status": "",
     "type": ""
-  }
-]
+}]

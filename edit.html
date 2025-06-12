@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Student List - Student CMS</title>
+</head>
+<body>
+    <div class="main">
+        <h1>Student Details</h1>
+                
+        <div class="table-container">
+            <table id="student-list">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>Age</th>
+                        <th>Guardian Number</th>
+                        <th>Address</th>
+                        <th>Subjects</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="student-list-body">
+                    <tr>
+                        <td colspan="11" class="loading">Loading students...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+                
+        <div class="action-container">
+            <button type="button" id="back-button" class="back-button">Back to Form</button>
+            <button type="button" id="refresh-button" class="refresh-button">Refresh List</button>
+        </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
